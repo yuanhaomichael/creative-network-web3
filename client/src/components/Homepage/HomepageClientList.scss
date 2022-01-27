@@ -1,0 +1,23 @@
+.homepage-client-list {
+  height: 200px;
+  width: 100%;
+  margin-right: 0px;
+  margin-left: 0px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 7em;
+  padding-top:1em;
+ 
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+.client-list-logos{
+    width:100%;
+    display:flex;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
+}

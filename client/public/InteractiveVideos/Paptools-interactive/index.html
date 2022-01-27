@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs -->
+  <meta charset="utf-8">
+  <title>Interactive Vimeo</title>
+
+  <!-- Mobile Specific Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <!-- Boostrap  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script type="text/javascript" src="js/interaction.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/interaction.css">
+
+  <!-- Click Effects Script -->
+    <script type="text/javascript">
+        function clickEffect(e){
+          var d=document.createElement("div");
+          d.className="clickEffect";
+          d.style.top=e.clientY+"px";d.style.left=e.clientX+"px";
+          document.body.appendChild(d);
+          d.addEventListener('animationend',function(){d.parentElement.removeChild(d);}.bind(this));
+        }
+        document.addEventListener('click',clickEffect);
+    </script>
+</head>
+
+<body>
+
+<!-- Video Container -->
+<div class="Container">
+  <div class="embed-responsive embed-responsive-16by9">
+  <div id="myVideo" class="videoArea embed-responsive-item" 
+                        data-vimeo-id="494338777"
+                        data-vimeo-muted="false"
+                        data-vimeo-controls="false"
+                        data-vimeo-background="true"
+                        data-vimeo-loop="true">
+                             <!-- how to get play button to hide after 30 second -->
+                             <!-- how to show a loader after play button is clicked -->
+                             <div class="playButton" id="play" onclick="playDisplayPart()"></div>
+                             <!-- shop button function in JQuery -->
+                             <div class="shopButton" id="shop"></div> 
+                             <div class="loader1" id="loader1" style="top:69%; left: 47%;">
+                                 <div class="circle one"></div>
+                                 <div class="circle two"></div>
+                                 <div class="circle three"></div>
+                              </div>
+                              <!-- Button for jump between Products -->
+                              <div class="jumpToRipple" id="jumpRipple" onclick="privousProduct()" style="top:9.5%;left:16%;transform: scale(0.6);">
+                                <div class="circle one"></div><div class="circle two"></div><div class="circle three"></div>
+                              </div>
+                              <div class = "jumpToButton" id="previous" style="top: 7.0%;left: 1.4%;" onclick="previousProduct()">Προηγούμενος</div>
+
+                              <div class="jumpToRipple" id="jumpRipple" onclick="nextProduct()" style="top:9.5%;left:88%; transform: scale(0.6);">
+                                <div class="circle one"></div><div class="circle two"></div><div class="circle three"></div>
+                              </div>
+                              <div class = "jumpToButton" id="next" style="top: 7.0%;left: 89.1%;" onclick="nextProduct()">Επόμενο</div>
+                              <!-- loading screen -->
+                              <div id="loading" class="loading">
+                                <p style="color: white; margin-left: 40%">Loading...</p>
+                              </div>
+                             <!-- pop up slideshow experience -->
+                            
+                              <div id="Carousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                  <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+                                  <li data-target="#Carousel" data-slide-to="1"></li>
+                                  <li data-target="#Carousel" data-slide-to="2"></li>
+                                  <li data-target="#Carousel" data-slide-to="3"></li>
+                                  <li data-target="#Carousel" data-slide-to="4"></li>
+                                  <li data-target="#Carousel" data-slide-to="5"></li>
+                                  <li data-target="#Carousel" data-slide-to="6"></li>
+                                  <li data-target="#Carousel" data-slide-to="7"></li>
+                                </ol>
+                            
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" style="position: relative">
+                                  <!-- 0 -->
+                                  <div class="item active">
+                                    <h4>Αδιάβροχη γαλότσα εργασίας Dunlop κνήμης (κοντή)</h4>
+                                    <h5>€10,4</h5>
+                                    <p>Αδιάβροχες γαλότσες υψηλής ποιότητας για απαιτητικές αγροτικές εργασίες</p>
+                                    <img src="images/PVC-boots.png" id="shopImg" 
+                                    style="width: 50%; position: absolute;">
+                                    <button type="button" class="btn btn-dark btn-carousel btn-shop" >Προσθήκη στο Καλάθι</button>
+                                    <button type="button" class="btn btn-dark btn-carousel btn-back" onclick="playAgain()">επιστροφή στο βίντεο</button>
+                                    <img src="images/rec.png" alt="" style="width:100%;">
+                                  </div>
+                                  <!-- 1 -->
+                                  <div class="item">
+                                    <h4>Αλυσοπρίονο βενζίνης Einhell 2χρονο - με αλυσίδα & λάμα Oregon 35cm</h4>
+                                    <h5>€107,55</h5>
+                                    <p>Με αντικραδασμικό σύστημα & φρένο αλυσίδας</p>
+                                    <img src="images/Chainsaw.png" id="shopImg" 
+                                    style="width: 50%; position: absolute;">
+                                    <button type="button" class="btn btn-dark btn-carousel btn-shop">Προσθήκη στο Καλάθι</button>
+                                    <button type="button" class="btn btn-dark btn-carousel btn-back" onclick="playAgain()">επιστροφή στο βίντεο</button>
+                                    <img src="images/rec.png" alt="" style="width:100%;">
+                                  </div>
+                                  <!-- 2 -->
+                                  <div class="item">
+                                    <h4>Ηλεκτρικός γωνιακός τροχός Einhell διαμέτρου 125mm 850 Watt</h4>
+                                    <h5>€31,95</h5>
+                                    <p>Με 2 χρόνια εγγύηση</p>
+                                    <img src="images/angle-grinder.png" id="shopImg" 
+                                    style="width: 50%; position: absolute;">
+                                    <button type="button" class="btn btn-dark btn-carousel btn-shop">Προσθήκη στο Καλάθι</button>
+                                    <button type="button" class="btn btn-dark btn-carousel btn-back" onclick="playAgain()">επιστροφή στο βίντεο</button>
+                                    <img src="images/rec.png" alt="" style="width:100%;">
+                                  </div>
+                                  <!-- 3 -->
+                                  <div class="item">
+                                    <h4>Λιπαντικό - αντισκωριακό γενικής χρήσης Q20</h4>
+                                    <h5>€3,5</h5>
+                                    <p>Προλαμβάνει τη σκουριά & απομακρύνει την υγρασία</p>
+                                    <img src="images/Lubricant-Q20.png" id="shopImg" 
+                                    style="width: 50%; position: absolute;">
+                                    <button type="button" class="btn btn-dark btn-carousel btn-shop">Προσθήκη στο Καλάθι</button>
+                                    <button type="button" class="btn btn-dark btn-carousel btn-back" onclick="playAgain()">επιστροφή στο βίντεο</button>
+                                    <img src="images/rec.png" alt="" style="width:100%;">
+                                  </div>
+                                  <!-- 4 -->
+                                  <div class="item">
+                                    <h4>Επαγγελματική τσεκουροβαριά Harden με λαβή fiberglass 90cm</h4>
+                                    <h5>€22,5</h5>
+                                    <p>Ιδανική για σχίσιμο των ξύλων</p>
+                                    <img src="images/axes.png" id="shopImg" 
+                                    style="width: 50%; position: absolute;">
+                                    <button type="button" class="btn btn-dark btn-carousel btn-shop">Προσθήκη στο Καλάθι</button>
+                                    <button type="button" class="btn btn-dark btn-carousel btn-back" onclick="playAgain()">επιστροφή στο βίντεο</button>
+                                    <img src="images/rec.png" alt="" style="width:100%;">
+                                  </div>
+                                  <!-- 5 -->
+                                  <div class="item">
+                                    <h4>Γεννήτρια παραγωγής θερμού αέρα HGG Einhell</h4>
+                                    <h5>€98,5</h5>
+                                    <p>Με βαλβίδα υγραερίου & ανοξείδωτο περίβλημα</p>
+                                    <img src="images/Warm-air-generator.png" id="shopImg" 
+                                    style="width: 50%; position: absolute;">
+                                    <button type="button" class="btn btn-dark btn-carousel btn-shop">Προσθήκη στο Καλάθι</button>
+                                    <button type="button" class="btn btn-dark btn-carousel btn-back" onclick="playAgain()">επιστροφή στο βίντεο</button>
+                                    <img src="images/rec.png" alt="" style="width:100%;">
+                                  </div>
+                                  <!-- 6 -->
+                                  <div class="item">
+                                    <h4>Επαγγελματική ζυγαριά δαπέδου - πλάστιγγα 150kg</h4>
+                                    <h5>€47,9</h5>
+                                    <p>Λειτουργεί με ρεύμα & με μπαταρία</p>
+                                    <img src="images/Scale.png" id="shopImg" 
+                                    style="width: 50%; position: absolute;">
+                                    <button type="button" class="btn btn-dark btn-carousel btn-shop">Προσθήκη στο Καλάθι</button>
+                                    <button type="button" class="btn btn-dark btn-carousel btn-back" onclick="playAgain()">επιστροφή στο βίντεο</button>
+                                    <img src="images/rec.png" alt="" style="width:100%;">
+                                  </div>
+                                  <!-- 7 -->
+                                  <div class="item">
+                                    <h4>Ηλεκτρικό κρουστικό δράπανο Einhell TC-ID/1E 720Watt</h4>
+                                    <h5>€33,9</h5>
+                                    <p>Δύο χρόνια εγγύηση</p>
+                                    <img src="images/Hammer-Drill.png" id="shopImg" 
+                                    style="width: 50%; position: absolute;">
+                                    <button type="button" class="btn btn-dark btn-carousel btn-shop">Προσθήκη στο Καλάθι</button>
+                                    <button type="button" class="btn btn-dark btn-carousel btn-back" onclick="playAgain()">επιστροφή στο βίντεο</button>
+                                    <img src="images/rec.png" alt="" style="width:100%;">
+                                  </div>
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#Carousel" data-slide="prev">
+                                  <span class="glyphicon glyphicon-chevron-left"></span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#Carousel" data-slide="next">
+                                  <span class="glyphicon glyphicon-chevron-right"></span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                              </div>
+                              
+                        </div>
+    </div>
+
+      
+       <!-- Vimeo player script and SDK import -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+      //player setup
+      var options = {
+        id: "494338777",
+        url: "https://vimeo.com/494338777"
+      };
+      var player = new Vimeo.Player('myVideo', options);
+      player.setVolume(0);
+
+      document.getElementById("loader1").style.display = "none"; 
+      document.getElementById("play").style.display = "none"; 
+      document.getElementById("shop").style.display = "none";
+
+      var onPlay = function(data) {
+      };
+
+      player.on('bufferend', onPlay);
+
+      player.on('play', function() {
+        // console.log('Played the video');
+        document.getElementById("loader1").style.display = "inline"; 
+        document.getElementById("play").style.display = "inline";
+        document.getElementById("shop").style.display = "none";
+      });
+      
+      var jumpSecond =  new Array(34, 37, 40, 43, 46, 49, 52, 55);
+      var playButtonClicked = false;
+      var prevButtonClicked = false;
+      var nextButtonClicked = false;
+      var currentAt = -1;
+      var videoLength = 10000000;
+
+      // player.getDuration().then(function(duration) {
+      //   // `duration` indicates the duration of the video in seconds
+      //   videoLength = duration;
+      // });
+
+      //play button
+      function playDisplayPart() {
+        playButtonClicked = true;
+        document.getElementById("loading").style.display = "inline";
+        // console.log("show loading", playButtonClicked)
+        player.setCurrentTime(jumpSecond[0]);
+        document.getElementById("play").style.display = "none";
+      }
+
+      var jumpToShopping =  function(data){
+        if(data.seconds >= jumpSecond[0] && playButtonClicked == true){
+          // console.log("reached jump point")
+          document.getElementById("loading").style.display = "none";
+          // console.log("hide loading")
+          playButtonClicked = false;
+          showAllJumpButton();
+          document.getElementById("shop").style.display = "inline";
+        }
+
+        if(data.seconds >= jumpSecond[0] && loop == true){
+          // console.log("reached jump point")
+          document.getElementById("loading").style.display = "none";
+          // console.log("hide loading")
+          loop = false;
+          showAllJumpButton();
+          document.getElementById("shop").style.display = "inline";
+        }
+
+
+      };
+      player.on('timeupdate',jumpToShopping);
+
+      // player.on('timeupdate', function(data){
+      //   console.log(Math.round(data.seconds))
+      // })
+
+      // loop after ended
+      var loop = false;
+      var videoLength = 60;
+      var reAppear = function(data){
+        if(Math.round(data.seconds)>= videoLength){
+          loop = true;
+          player.setCurrentTime(jumpSecond[0]);
+          data.seconds = jumpSecond[0];
+          // document.getElementById("loading").style.display = "inline";
+          // currentAt = 0;
+          playDisplayPart();
+        }
+      }
+      player.on('timeupdate', reAppear);
+
+      var buttonDisplay = function(data){
+        //control play button
+        if(Math.round(data.seconds)>=jumpSecond[0]){
+          document.getElementById("loader1").style.display = "none";
+          document.getElementById("play").style.display = "none";
+        }
+
+        //control shop button
+        if(Math.round(data.seconds)<=jumpSecond[0]){
+          document.getElementById("shop").style.display = "none";
+        }
+        if(Math.round(data.seconds)>jumpSecond[0]){
+          document.getElementById("shop").style.display = "inline";
+          showAllJumpButton();
+        }
+      }
+      player.on('timeupdate', buttonDisplay);
+      
+      //shop button
+      //Jquery is neccesary for Carousel control
+      $(document).ready(function(){
+        $("#shop").click(function(){
+          player.pause();
+          player.getCurrentTime().then(function(seconds) {
+          var index = getTimeIndex(jumpSecond, seconds);
+          // currentAt = index;
+          $("#Carousel").carousel(index);
+          
+        });
+        document.getElementById("Carousel").style.display = "inline";
+        hideAllJumpButton();
+        })
+      })
+
+
+      //επιστροφή στο βίντεο from carousel
+      function playAgain(){
+        document.getElementById("Carousel").style.display = "none";
+        showAllJumpButton();
+        // player.setCurrentTime(jumpSecond[currentAt]);
+        // document.getElementById("loading").style.display = "inline";
+        player.play();
+      }
+   
+
+      // jump between products
+      function previousProduct(){
+        player.getCurrentTime().then(function(seconds) {
+          // console.log(seconds)
+          prevButtonClicked = true;
+          var index = getTimeIndex(jumpSecond, seconds);
+          // console.log(index)
+
+          if(index ==  0){
+            player.setCurrentTime(jumpSecond[0]);
+            // console.log("stay")
+            currentAt = 0;
+          }
+          if(index >= 1){
+            player.setCurrentTime(jumpSecond[index - 1]);
+            // console.log("jump to" + (index - 1))
+            currentAt = (index - 1);
+          }
+          document.getElementById("loading").style.display = "inline";
+        });
+      }
+
+      function nextProduct(){
+        player.getCurrentTime().then(function(seconds) {
+          // console.log(seconds)
+          nextButtonClicked = true;
+          var index = getTimeIndex(jumpSecond, seconds);
+          // console.log(index)
+          if(index ==  jumpSecond.length - 1){
+            player.setCurrentTime(jumpSecond[index]);
+            // console.log("stay")
+            currentAt = index;
+          }
+          else{
+            player.setCurrentTime(jumpSecond[index + 1]);
+            // console.log("jump to" + (index + 1))
+            currentAt = index + 1;
+          }
+          document.getElementById("loading").style.display = "inline";
+        });
+      }
+      
+      function listenForJump(data){
+        if(prevButtonClicked == true && data.seconds > jumpSecond[currentAt]){
+          document.getElementById("loading").style.display = "none";
+          prevButtonClicked = false;
+        }
+        if(nextButtonClicked == true && data.seconds <= jumpSecond[currentAt]){
+          document.getElementById("loading").style.display = "none";
+          prevButtonClicked = false;
+        }
+        if(loop == true && data.seconds == jumpSecond[0]){
+          document.getElementById("loading").style.display = "none";
+          loop = false;
+        }
+
+      }
+      player.on('timeupdate', listenForJump);
+
+
+
+      function getTimeIndex(jumpSecond, time){
+        var timeIndex = -1;
+        for(var index in jumpSecond){
+          if(jumpSecond[index] > time){
+            return index - 1;
+          }
+          if(index == jumpSecond.length - 1){
+            return parseInt(index);
+          }
+        }
+        return timeIndex;
+      }
+
+      //control jump button display
+      function hideAllJumpButton(){
+        var allJump = document.getElementsByClassName('jumpToButton');
+        for (var i = 0; i < allJump.length; i++) {
+          allJump[i].style.display = 'none';
+        }
+
+        var allRipple = document.getElementsByClassName('jumpToRipple');
+        for (var i = 0; i < allRipple.length; i++) {
+          allRipple[i].style.display = 'none';
+        }
+        
+
+      }
+      function showAllJumpButton(){
+        var allJump = document.getElementsByClassName('jumpToButton');
+        for (var i = 0; i < allJump.length; i++) {
+          allJump[i].style.display = 'inline';
+        }
+        var allRipple = document.getElementsByClassName('jumpToRipple');
+        for (var i = 0; i < allRipple.length; i++) {
+          allRipple[i].style.display = 'inline';
+        }
+      }
+
+
+    </script>
+     
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs -->
+  <meta charset="utf-8">
+  <title>Interactive Vimeo</title>
+
+  <!-- Mobile Specific Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <!-- Boostrap  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- Custom JS -->
+  <!-- <script type="text/javascript" src="js/interaction.js"></script> -->
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/interaction.css">
+
+
+  <style type="text/css">
+    div.clickEffect{
+      position:fixed;
+      box-sizing:border-box;
+      border-style:solid;
+      border-color:#000000;
+      border-radius:50%;
+      animation:clickEffect 0.4s ease-out;
+      z-index:99999;
+    }
+    @keyframes clickEffect{
+      0%{
+        opacity:1;
+        width:0.5em; height:0.5em;
+        margin:-0.25em;
+        border-width:0.5rem;
+      }
+      100%{
+        opacity:0.2;
+        width:15em; height:15em;
+        margin:-7.5em;
+        border-width:0.03rem;
+      }
+    }
+    </style>
+
+    <script type="text/javascript">
+        function clickEffect(e){
+          var d=document.createElement("div");
+          d.className="clickEffect";
+          d.style.top=e.clientY+"px";d.style.left=e.clientX+"px";
+          document.body.appendChild(d);
+          d.addEventListener('animationend',function(){d.parentElement.removeChild(d);}.bind(this));
+        }
+        document.addEventListener('click',clickEffect);
+    </script>
+</head>
+
+
+<body>
+
+<!-- Video Container -->
+<div class="Container">
+  <div class="embed-responsive embed-responsive-16by9">
+      <div id="myVideo" class="videoArea embed-responsive-item" 
+                        data-vimeo-id="493254746"
+                        data-vimeo-muted="false"
+                        data-vimeo-controls="false"
+                        data-vimeo-background="true"
+                        data-vimeo-loop="true">
+        <!-- START OF VIDEOAREA  -->
+        <!-- go to jump point 0 -->
+        <div class = "jumpButton" id="landmark0"  onclick="jumpTo()" style="top:80%; left: 80%;"></div>
+        <div class="ripple" id="landmark0" onclick="jumpTo()" style="top: 83.5%; left:84.5%;">
+          <div class="circle one"></div><div class="circle two"></div><div class="circle three"></div>
+        </div>
+        <!-- jump point 1  -->
+        <div class = "jumpButton" id="landmark1"  onclick="jumpTo()" style="top:48%; left:9%"></div>
+        <div class="ripple" id="landmark1" onclick="jumpTo()" style="top: 69.5%;left:8.5%;">
+            <div class="circle one"></div><div class="circle two"></div><div class="circle three"></div>
+          </div>
+        <div class="landmarkName" id="landmark1" onclick="jumpTo()" style="left: 11.2%;">Chester County</br>Amphitheater</div>
+
+        <!-- jump point 2 -->
+        <div class = "jumpButton" id="landmark2"  onclick="jumpTo()" style="top:48%; left:25.5%"></div>
+        <div class="ripple" id="landmark2" onclick="jumpTo()" style="top: 69.5%;left:26%;">
+          <div class="circle one"></div><div class="circle two"></div><div class="circle three"></div>
+        </div>
+      <div class="landmarkName" id="landmark2" onclick="jumpTo()" style="left: 28.7%;">Bucks County</br>Dog Park</div>
+
+        <!-- jump point 3 -->
+        <div class = "jumpButton" id="landmark3"  onclick="jumpTo()" style="top:48%; left:41.5%"></div>
+        <div class="ripple" id="landmark3" onclick="jumpTo()" style="top: 69.5%;left:42%;">
+          <div class="circle one"></div><div class="circle two"></div><div class="circle three"></div>
+        </div>
+      <div class="landmarkName" id="landmark3" onclick="jumpTo()" style="left: 44.7%;">Chester Valley Trail</br>Pedestrian Bridge</div>
+        
+      <!-- jump point 4 -->
+        <div class = "jumpButton" id="landmark4"  onclick="jumpTo()" style="top:48%; left:58.5%"></div>
+        <div class="ripple" id="landmakr4" onclick="jumpTo()" style="top: 69.5%;left:59%;">
+          <div class="circle one"></div><div class="circle two"></div><div class="circle three"></div>
+        </div>
+      <div class="landmarkName" id="landmark4" onclick="jumpTo()" style=" left: 62.7%;">Concord<br/>Monument</div>
+
+        <!-- jump point 5 -->
+        <div class = "jumpButton" id="landmark5"  onclick="jumpTo()" style="top:48%; left:74.5%"></div>
+        <div class="ripple" id="landmark5" onclick="jumpTo()" style="top: 69.5%;left:75%;">
+          <div class="circle one"></div><div class="circle two"></div><div class="circle three"></div>
+        </div>
+      <div class="landmarkName" id="landmark5" onclick="jumpTo()" style="left: 78.2%;">Quakertown<br/>Compass</div>
+
+        <div class="goBackRipple" id="goBackRipple" onclick="goBack()" style="top: 6.5%;left:85.5%;">
+          <div class="circle one"></div><div class="circle two"></div><div class="circle three"></div>
+        </div>
+        <div class = "goBackButton" id="goBack" style="top: 6.8%;left: 89%; font-size: 115%;" onclick="goBack()">View All</div>
+
+          <!-- loading screen -->
+          <div id="loading" class="loading">
+            <p style="color: white; margin-left: 45%">Loading...</p>
+          </div>
+    <!-- END OF VIDEOAREA  -->
+    </div>
+    
+    <!-- Vimeo player script and SDK import -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+      //Vimeo player setup
+      var options = {
+        id: "493254746",
+        url: "https://vimeo.com/493254746"
+      };
+      
+      var player = new Vimeo.Player('myVideo', options);
+      player.setVolume(0);
+
+      var onPlay = function(data) {};
+      player.on('bufferend', onPlay);
+      player.on('play', function() {
+        showAllJumpButton();
+      });
+      
+      
+      // player.on('timeupdate', function(data){
+      //   if(Math.round(data.seconds) >= 1){
+      //     showAllJumpButton();
+      //   }
+      // })
+      
+
+      //jumpTo button
+      var jumpTime = new Array(32, 40, 50, 60, 70, 80);
+      var currentAt = 0;
+        //jumpTo buttons function
+      function jumpTo(){
+        let index = event.target.id
+        index = index.replace(/landmark/, "")
+        // console.log(index)
+        currentAt = index;
+        hideAllJumpButton();
+        player.setCurrentTime(jumpTime[index]);
+        document.getElementById("loading").style.display = "inline";
+      }
+        //update state after jumpTo button clicked
+      var jumpToTarget =  function(data){
+        if(data.seconds >= jumpTime[currentAt]){
+          document.getElementById("loading").style.display = "none";
+          document.getElementById('goBack').style.display = 'inline';
+          document.getElementById('goBackRipple').style.display = "inline";
+        }
+
+        if(Math.round(data.seconds)>=jumpTime[0]){
+          hideAllJumpButton();
+          document.getElementById('goBack').style.display = 'inline';
+          document.getElementById('goBackRipple').style.display = "inline";
+        }
+      };
+      player.on('timeupdate',jumpToTarget);
+
+       //control display of all jump button
+       function hideAllJumpButton(){
+        var allJump = document.getElementsByClassName('jumpButton');
+        for (var i = 0; i < allJump.length; i++) {
+          allJump[i].style.display = 'none';
+        }
+
+        var allRipple = document.getElementsByClassName('ripple');
+        for (var i = 0; i < allRipple.length; i++) {
+          allRipple[i].style.display = 'none';
+        }
+        var allName = document.getElementsByClassName('landmarkName');
+        for (var i = 0; i < allName.length; i++) {
+          allName[i].style.display = 'none';
+        }
+
+      }
+      function showAllJumpButton(){
+        var allJump = document.getElementsByClassName('jumpButton');
+        for (var i = 0; i < allJump.length; i++) {
+          allJump[i].style.display = 'inline';
+        }
+        var allRipple = document.getElementsByClassName('ripple');
+        for (var i = 0; i < allRipple.length; i++) {
+          allRipple[i].style.display = 'inline';
+        }
+        var allName = document.getElementsByClassName('landmarkName');
+        for (var i = 0; i < allName.length; i++) {
+          allName[i].style.display = 'inline';
+        }
+      }
+
+
+      //goBack button
+      var goBackClicked = false;
+        //goBack button function
+      function goBack(){
+        document.getElementById('goBack').style.display = 'none';
+        document.getElementById('goBackRipple').style.display = "none";
+        goBackClicked = true;
+        player.setCurrentTime(0);
+        document.getElementById("loading").style.display = "inline";
+      }
+
+        //update state after goBack clicked
+      var goBackUpdate = function(data){
+        if(data.seconds >= 1 && goBackClicked == true){
+          document.getElementById("loading").style.display = "none";
+          showAllJumpButton();
+          goBackClicked = false;
+        }
+      }
+      player.on('timeupdate', goBackUpdate);
+
+    </script>
+     
+<!-- END OF CONTAINER -->
+</div>
+</div>
+
+
+</body>
+</html>

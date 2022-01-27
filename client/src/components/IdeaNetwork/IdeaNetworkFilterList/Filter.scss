@@ -1,0 +1,11 @@
+.filter {
+  @media (max-width: 850px) {
+    width: 350px !important;
+  }
+  @media (max-width: 426px) {
+    width: 250px !important;
+  }
+  @media (max-width: 345px) {
+    width: 200px;
+  }
+}

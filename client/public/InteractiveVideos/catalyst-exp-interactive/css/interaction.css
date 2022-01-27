@@ -1,0 +1,164 @@
+p, h1, h2, body {
+  font-family: "Lato", "Open Sans", "PT Sans";
+}
+
+
+
+.container {
+	margin: 20px;
+}
+
+.videoArea {
+	position: relative;
+	border: 1px solid black;
+  display: inline-flex;
+}
+
+
+.jumpButton {
+  background-color: #21d13000;
+  display: none;
+  width: 10%;
+  height: 28%;
+  position: absolute;  /* important, make the videoArea relative, and the box absolute so they are overlapped */
+  padding: 5px 10px;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.landmarkName{
+  top: 70.4%;
+  color: whitesmoke;
+  display: none;
+  font-size: 1.2vw;
+  /* transform: scale(0.6); */
+  position: absolute;
+  /* pointer-events: none; */
+  cursor: pointer;
+  z-index: 30;
+}
+
+@media screen and (max-width: 600px) {
+.landmarkName {
+    /* font-size: 5px; */
+    transform: scale(0.45);
+    transform-origin: 0% 0%;
+    
+  }
+.goBackButton{
+  transform: scale(0.45);
+  transform-origin: 0% 3%;
+}
+
+}
+
+.landmarkName:hover {
+  text-decoration:underline;
+}
+.goBackButton{
+  color: whitesmoke;
+  text-shadow: 1px 1px 2px black;
+  font-size: 1.5vw;
+  /* transform: scale(0.7); */
+  display: none;
+	background-color: rgba(91, 172, 37, 0);
+	width: 12%;
+	height: 13%;
+	position: absolute; /* important, make the videoArea relative, and the box absolute so they are overlapped */
+	pointer-events: auto;
+	cursor: pointer;
+	z-index: 30;
+}
+.goBackButton:hover {
+  text-decoration:underline;
+}
+
+.goBackRipple {
+  cursor: pointer;
+  display: none;
+	position: absolute;
+  z-index: 10;
+}
+
+.ripple {
+  display: none;
+	position: absolute;
+  z-index: 10;
+}
+
+button {
+  background-color: black;
+  color: white !important;
+  border-radius: 0 !important;
+}
+
+h1, h2, p {
+  position: absolute;
+  width: 50%;
+  margin-left: 50%;
+}
+
+h1 {
+  margin-top: 8%;
+}
+
+h2 {
+  margin-top: 16%;
+}
+
+p {
+  margin-top: 22%
+}
+
+
+
+@keyframes circle {
+  from {
+    transform: scale(0)
+  }
+  to {
+    transform: scale(1)
+  }
+}
+
+.circle {
+  margin: 0 auto;
+  width: 2.5vw;
+  height: 2.5vw;
+  border: 0.1vw solid rgba(241, 234, 234, 0.836);
+  border-radius: 50%;
+  position: absolute;
+  top: 67%;
+  left: 48%;
+}
+
+.one {
+  animation: circle 4s infinite linear;
+}
+
+.two {
+  animation: circle 3s infinite linear;
+}
+
+.three {
+  animation: circle 2s infinite linear;
+}
+
+.carousel{
+  display: none;
+  position: absolute;
+  z-index: 30;
+}
+
+.loading{
+  display: none;
+  position: absolute;
+  background-color: rgba(71, 71, 71, 0.5);
+  width: 100%;
+  height: 100%;
+  top:  0px;
+  left: 0px;
+  pointer-events: auto;
+  z-index: 20;
+}
